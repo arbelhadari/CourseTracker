@@ -19,7 +19,7 @@ const CourseDetails = ({course}) => {
             <br/>
             <p><strong>Details: </strong></p>
             <p>{course.CourseDetails}</p>
-            <span onClick={handleClick}>delete</span>
+            <span className= "material-symbols-outlined" onClick={handleClick}>delete</span>
         </div>
     )
 };
