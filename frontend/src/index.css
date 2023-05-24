@@ -71,13 +71,20 @@ header a {
 .create {
   background-color: white;
   padding: 20px;
+  height: 400px; /* Set a fixed height for the form */
+  width: 400px; /* Set a fixed width for the form */
+  margin: 0 auto; /* Center the form horizontally */
 }
+
 .create h3 {
   font-size: 1.2em;
+  margin-top: 0; /* Remove top margin to avoid extra spacing */
 }
+
 .create label {
   font-weight: bold;
 }
+
 .create input,
 .create select,
 .create textarea {
@@ -88,15 +95,18 @@ header a {
   border-radius: 4px;
   border: 1px solid #ccc;
 }
+
 .create div {
   margin-bottom: 10px;
 }
+
 .create input[type="radio"],
 .create label[for="semester-a"],
 .create label[for="semester-b"] {
   display: inline-block;
   margin-right: 10px;
 }
+
 .create button[type="submit"] {
   margin-top: 10px;
   background-color: var(--primary);
@@ -106,9 +116,11 @@ header a {
   border: none;
   cursor: pointer;
 }
+
 .create .error {
   color: var(--error);
 }
+
 .create .semester-options {
   display: flex;
   margin-bottom: 10px;
