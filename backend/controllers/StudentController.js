@@ -1,12 +1,12 @@
-const Course = require("../models/CourseModel");
-const Student = require("../models/StudentModel");
+const Courses = require("../models/CourseModel");
+const Students = require("../models/StudentModel");
 const mongoose = require('mongoose');
 
 
 async function createStudent(StudentData){
     const { StudentId, StudentDOB, Gender } = StudentData;
     try {
-        return await Student.create({StudentId, StudentDOB, Gender});
+        return await Students.create({StudentId, StudentDOB, Gender});
     } catch (err) {
         console.log(err);
         return -1;
@@ -15,7 +15,7 @@ async function createStudent(StudentData){
 
 async function deleteStudent(StudentData){
     try{
-        const deleted = await Student.findOneAndDelete({StudentId: StudentData.StudentId});
+        const deleted = await Students.findOneAndDelete({StudentId: StudentData.StudentId});
         console.log(8);
         return deleted;
     } catch (err) {
@@ -27,7 +27,7 @@ async function deleteStudent(StudentData){
 async function incrementCourseCount(studentId)
 {
     try {
-        return await Student.findOneAndUpdate({StudentId: studentId}, {$inc: {CourseCount: 1}}, {new:true});
+        return await Students.findOneAndUpdate({StudentId: studentId}, {$inc: {CourseCount: 1}}, {new:true});
     }
     catch (err) {
         return -1;
@@ -37,7 +37,7 @@ async function incrementCourseCount(studentId)
 async function decrementCourseCount(studentId)
 {
     try {
-        const student = await Student.findOneAndUpdate({StudentId: studentId},{$inc: {CourseCount: -1}}, {new:true} );
+        const student = await Students.findOneAndUpdate({StudentId: studentId},{$inc: {CourseCount: -1}}, {new:true} );
         console.log(6);
         if (student.CourseCount == 0){
             console.log(7);
@@ -60,12 +60,12 @@ const addStudent = async (req, res) => {
             return res.status(404).json({error: "bad id"});
         }
 
-        let course = await Course.findById({_id: id});
+        let course = await Courses.findById({_id: id});
         if (!course) {
-            return res.status(500).send({mssg: "Course not found"});
+            return res.status(500).send({mssg: "Courses not found"});
         }
 
-        let student = await Student.findOne({StudentId: req.body.StudentId});
+        let student = await Students.findOne({StudentId: req.body.StudentId});
         if (!student) {
             student = await createStudent(req.body);
             if (student == -1) {
@@ -74,7 +74,7 @@ const addStudent = async (req, res) => {
         }
         else {
             if (course.GradeSheet.has(req.body.StudentId)) {
-                return res.status(400).send({error: "Student ID already exists in this course."})
+                return res.status(400).send({error: "Student's ID already exists in this course."})
             }
             else {
                 incrementCourseCount(req.body.StudentId);
@@ -100,16 +100,16 @@ const removeStudent = async (req, res) => {
             return res.status(404).json({error: "bad id"});
         }
 
-        let course = await Course.findById({_id: id});
+        let course = await Courses.findById({_id: id});
         if (!course) {
-            return res.status(500).send({mssg: "Course not found"});
+            return res.status(500).send({mssg: "Courses not found"});
         }
 
         if (course.GradeSheet.has(req.body.StudentId)) {
             course.GradeSheet.delete(req.body.StudentId); 
             await course.save();
 
-            let student = await Student.findOne({StudentId: req.body.StudentId});
+            let student = await Students.findOne({StudentId: req.body.StudentId});
 
             if (!student) {
                 return res.status(404).json({error: "Student not found in DB"});
@@ -134,9 +134,9 @@ const updateStudent = async (req, res) => {
             return res.status(404).json({error: "bad id"});
         }
 
-        let course = await Course.findById({_id: id});
+        let course = await Courses.findById({_id: id});
         if (!course) {
-            return res.status(500).send({mssg: "Course not found"});
+            return res.status(500).send({mssg: "Courses not found"});
         }
 
         if (course.GradeSheet.has(req.body.StudentId)) {
@@ -145,7 +145,7 @@ const updateStudent = async (req, res) => {
             return res.status(200).json(course[0]);
         }
         else {
-            return res.status(404).json({error: "student not found in course"});
+            return res.status(404).json({error: "Student not found in course"});
         }
     }
     catch (err) {

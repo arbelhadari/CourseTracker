@@ -32,8 +32,7 @@ const StudentSchema = new mongoose.Schema({
       type: Number,
       default: 1
     }
-},
-    { timestamps: true }
+}, { timestamps: true }
 );
 
 module.exports = mongoose.model("Student", StudentSchema);
