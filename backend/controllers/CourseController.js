@@ -1,5 +1,5 @@
 const Courses = require("../models/CourseModel");
-
+const mongoose = require('mongoose');
 
 // get all courses
 const getAllCourses = async (req, res) => {
@@ -12,7 +12,9 @@ const getAllCourses = async (req, res) => {
 const getCourse = async (req, res) => {
     const { id } = req.params;
     
-    // TODO: proper _id check
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+        return res.status(404).json({error: "bad id"});
+    }
     
     const course = await Courses.findOne({_id: id});
     if (!course) 
@@ -42,7 +44,9 @@ const deleteCourse = async (req, res) => {
     // TODO: decrement CourseCount for each student in this course
     const { id } = req.params;
     
-    // TODO: proper _id check
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+        return res.status(404).json({error: "bad id"});
+    }
 
     const course = await Courses.findOneAndDelete({_id: id});
     if (!course) 
@@ -56,7 +60,9 @@ const deleteCourse = async (req, res) => {
 const updateCourse = async (req, res) => {
     const { id } = req.params;
     
-    // TODO: change to the proper check
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+        return res.status(404).json({error: "bad id"});
+    }
 
     const course = await Courses.findOneAndUpdate({_id: id}, {...req.body});
     if (!course) 
