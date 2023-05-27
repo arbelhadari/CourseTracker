@@ -8,7 +8,11 @@ export const CoursesReducer = (state, action) => {
             return {courses: action.payload};
         case "CREATE_COURSE":
             return {courses: [action.payload, ...state.courses]};
-        default:
+        case "DELETE_COURSE":
+            return  {
+                courses: state.courses.filter((w) => w._id !== action.payload._id)
+            } 
+        default: 
             return state
     }
 }
