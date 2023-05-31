@@ -197,3 +197,13 @@ form.login button[type="submit"] {
   border: none;
   cursor: pointer;
 }
+.hello{
+  font-family: Arial, sans-serif;
+        background-color: #F0F2F5;
+        padding: 10px;
+        border: 1px solid #dddfe2;
+        border-radius: 5px;
+        box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+        display: inline-block;
+        color: #1d2129;
+    }

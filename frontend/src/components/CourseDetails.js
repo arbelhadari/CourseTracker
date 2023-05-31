@@ -1,10 +1,19 @@
 import { useCoursesContext } from "../hooks/useCoursesContext";
+import { useAuthContext } from "../hooks/useAuthContext";
+
 
 const CourseDetails = ({course}) => {
     const { dispatch } = useCoursesContext()
+    const {user} = useAuthContext()
     const handleClick = async () => {
+        if (!user){
+            return
+        }
         const response = await fetch('/api/courses/' + course._id, {
-            method: 'DELETE'
+            method: 'DELETE',
+            headers: {
+                'Authorization' : `Bearer ${user.token}`
+            }
     })
     const json = await response.json()
     if (response.ok) {
