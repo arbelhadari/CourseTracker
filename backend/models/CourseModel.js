@@ -2,6 +2,8 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const CourseSchema = new Schema({
+
+
     CourseName: {
         type: String,
         require: true,
@@ -9,11 +11,9 @@ const CourseSchema = new Schema({
         max: 50,
         unique: true,
     },
-    ProfessorUsername: {
+    ProfessorID: {
         type: String,
-        require: true,
-        min: 3,
-        max: 20,
+        require: true
     },
     Semester: {
         type: String,

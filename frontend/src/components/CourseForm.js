@@ -1,9 +1,11 @@
 import { useState } from "react";
 import { useCoursesContext } from "../hooks/useCoursesContext";
+import { useAuthContext } from "../hooks/useAuthContext";
 
 const CourseForm = () => {
 
     const { dispatch } = useCoursesContext()
+    const {user} = useAuthContext()
     const [CourseName, setCourseName] = useState("");
     const [Year, setYear] = useState("");
     const [Semester, setSemester] = useState("");
@@ -12,14 +14,22 @@ const CourseForm = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        
+        if(!user){
+          setError('you must be logged in')
+          return
+        }
 
         // TODO: figure out how to get the current username 
-        const ProfessorUsername = "prof1"
-        const course = {CourseName, Year, Semester, CourseDetails, ProfessorUsername};
+        const ProfessorEmail = user.email.split('@')[0]
+        const course = {CourseName, Year, Semester, CourseDetails, ProfessorEmail};
         const response = await fetch('/api/courses', {
             method: "POST",
             body: JSON.stringify(course),
-            headers: { "Content-Type": "application/json" }
+            headers: { "Content-Type": "application/json" ,
+            'Authorization' : `Bearer ${user.token}`
+          }
+
         });
         const json = await response.json();
         if (!response.ok) 
