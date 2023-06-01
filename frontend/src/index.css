@@ -71,14 +71,14 @@ header a {
 .create {
   background-color: white;
   padding: 20px;
-  height: 400px; /* Set a fixed height for the form */
-  width: 400px; /* Set a fixed width for the form */
-  margin: 0 auto; /* Center the form horizontally */
+  height: 400px;
+  width: 400px;
+  margin: 0 auto;
 }
 
 .create h3 {
   font-size: 1.2em;
-  margin-top: 0; /* Remove top margin to avoid extra spacing */
+  margin-top: 0;
 }
 
 .create label {
@@ -94,6 +94,8 @@ header a {
   padding: 5px;
   border-radius: 4px;
   border: 1px solid #ccc;
+  max-width: 100%; 
+  max-height: 88px;
 }
 
 .create div {
@@ -154,6 +156,7 @@ nav button {
   font-family: "Poppins";
   cursor: pointer;
   font-size: 1em;
+  margin: 12px;
 }
 
 form.signup,
@@ -197,7 +200,7 @@ form.login button[type="submit"] {
   border: none;
   cursor: pointer;
 }
-.hello{
+/* .hello{
   font-family: Arial, sans-serif;
         background-color: #F0F2F5;
         padding: 10px;
@@ -206,4 +209,4 @@ form.login button[type="submit"] {
         box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
         display: inline-block;
         color: #1d2129;
-    }
+    } */
