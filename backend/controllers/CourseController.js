@@ -27,7 +27,8 @@ async function getStudentsFromGradeSheet(id) {
 
 // get all courses
 const getAllCourses = async (req, res) => {
-    const courses = await Courses.find({}).sort({createdAt: -1});
+    const ProfessorID = req.user._id
+    const courses = await Courses.find({ProfessorID}).sort({createdAt: -1});
     res.status(200).json(courses);
 };
 
@@ -51,10 +52,11 @@ const getCourse = async (req, res) => {
 // create new course
 const createCourse = async (req, res) => {
     // TODO: check if GradeSheet is needed here
-    const {CourseName, ProfessorUsername, Semester, Year, GradeSheet, CourseDetails} = req.body;
+    const {CourseName, Semester, Year, GradeSheet, CourseDetails} = req.body;
     try {
+        const ProfessorID = req.user._id
         const course = await Courses.create({
-            CourseName, ProfessorUsername, Semester, Year, GradeSheet, CourseDetails
+            CourseName, ProfessorID, Semester, Year, GradeSheet, CourseDetails
         });
         res.status(200).json(course);
     } catch (err) {

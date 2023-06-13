@@ -7,6 +7,7 @@ const {
     deleteCourse,
     updateCourse
  } = require("../controllers/CourseController");
+ const requireAuth = require('../middleware/requireAuth')
 
  const {
     addStudent,
@@ -14,6 +15,7 @@ const {
     removeStudent
  } = require("../controllers/StudentController");
 
+ router.use(requireAuth)
 
 // GET all courses
 router.get("/", getAllCourses);

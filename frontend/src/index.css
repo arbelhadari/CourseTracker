@@ -75,14 +75,14 @@ header a {
 .create {
   background-color: white;
   padding: 20px;
-  height: 400px; /* Set a fixed height for the form */
-  width: 400px; /* Set a fixed width for the form */
-  margin: 0 auto; /* Center the form horizontally */
+  height: 400px;
+  width: 400px;
+  margin: 0 auto;
 }
 
 .create h3 {
   font-size: 1.2em;
-  margin-top: 0; /* Remove top margin to avoid extra spacing */
+  margin-top: 0;
 }
 
 .create label {
@@ -98,6 +98,8 @@ header a {
   padding: 5px;
   border-radius: 4px;
   border: 1px solid #ccc;
+  max-width: 100%; 
+  max-height: 88px;
 }
 
 .create div {
@@ -139,3 +141,76 @@ header a {
 .create .semester-options input[type="radio"] {
   margin-right: 5px;
 }
+
+/* navbar */
+nav {
+  display: flex;
+  align-items: center;
+}
+nav a {
+  margin-left: 10px;
+}
+
+nav button {
+  background: #fff;
+  color: var(--primary);
+  border: 2px solid var(--primary);
+  padding: 6px 10px;
+  border-radius: 4px;
+  font-family: "Poppins";
+  cursor: pointer;
+  font-size: 1em;
+  margin: 12px;
+}
+
+form.signup,
+form.login {
+  max-width: 400px;
+  margin: 40px auto;
+  padding: 20px;
+  background: #fff;
+  border-radius: 4px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.05);
+}
+form.signup h3,
+form.login h3 {
+  font-size: 1.2em;
+  margin-top: 0;
+}
+form.signup label,
+form.login label {
+  font-weight: bold;
+}
+form.signup input,
+form.login input {
+  display: block;
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 5px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+form.signup div,
+form.login div {
+  margin-bottom: 10px;
+}
+form.signup button[type="submit"],
+form.login button[type="submit"] {
+  margin-top: 10px;
+  background-color: var(--primary);
+  color: white;
+  padding: 8px 16px;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+}
+/* .hello{
+  font-family: Arial, sans-serif;
+        background-color: #F0F2F5;
+        padding: 10px;
+        border: 1px solid #dddfe2;
+        border-radius: 5px;
+        box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+        display: inline-block;
+        color: #1d2129;
+    } */
