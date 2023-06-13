@@ -67,6 +67,10 @@ header a {
   color: #333;
 }
 
+.course-details-link{
+  text-decoration: none;
+}
+
 /* form */
 .create {
   background-color: white;

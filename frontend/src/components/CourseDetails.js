@@ -1,4 +1,5 @@
 import { useCoursesContext } from "../hooks/useCoursesContext";
+import { Link } from 'react-router-dom';
 
 const CourseDetails = ({course}) => {
     const { dispatch } = useCoursesContext()
@@ -13,7 +14,9 @@ const CourseDetails = ({course}) => {
 }
     return (
         <div className="course-details">
+            <Link className="course-details-link" to={`/course/${course._id}`}>
             <h4>{course.CourseName}</h4>
+            </Link>
             <p><strong>{course.Year} semester: {course.Semester}</strong></p>
             <p>Number of Students: {Object.keys(course.GradeSheet).length}</p>
             <br/>

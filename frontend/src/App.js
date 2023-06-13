@@ -6,7 +6,7 @@ import {
 
 // pages
 import Home from "./pages/Home";
-
+import Course from "./components/Course";
 // components
 import Navbar from "./components/Navbar";
 
@@ -18,6 +18,7 @@ function App() {
         <div className='pages'>
           <Routes>
             <Route path="/" element={<Home />}/>
+            <Route path="/course/:courseId" element={<Course />}/>
           </Routes>
         </div>
       </BrowserRouter>
