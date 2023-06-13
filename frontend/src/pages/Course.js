@@ -1,13 +1,20 @@
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
+import { useAuthContext } from '../hooks/useAuthContext';
 
 const Course = () => {
     const { courseId } = useParams();
     const [ course, setCourse ] = useState(null);
+    const {user} = useAuthContext()
 
     useEffect(() => {
         const fetchCourse = async () => {
-            const response = await fetch("/api/courses/".concat(courseId));
+            const response = await fetch(`/api/courses/${courseId}`, {
+              headers: {
+                  'Authorization' : `Bearer ${user.token}`
+              }
+          });
+            console.log(response);
             const json = await response.json();
             setCourse(json);
         }
