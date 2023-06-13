@@ -29,12 +29,20 @@ const Course = () => {
           <h2>Year: {course.Year}</h2>
           <h2>Grade Sheet:</h2>
           <ul>
-            {Object.entries(course.GradeSheet).map(([student, grade]) => (
+            {course.GradeSheet && Object.entries(course.GradeSheet).map(([student, grade]) => (
               <li key={student}>
                 {student}: {grade}
               </li>
             ))}
           </ul>
+          {/* <h2>Grade Sheet:</h2>
+          <ul>
+            {Object.entries(course.GradeSheet).map(([student, grade]) => (
+              <li key={student}>
+                {student}: {grade}
+              </li>
+            ))}
+          </ul> */}
           <h2>Course Details: {course.CourseDetails}</h2>
         </div>
       )

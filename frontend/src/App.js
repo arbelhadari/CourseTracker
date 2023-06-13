@@ -7,7 +7,7 @@ import {
 import { useAuthContext } from './hooks/useAuthContext';
 // pages
 import Home from "./pages/Home";
-import Course from "./components/Course";
+import Course from "./pages/Course";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 
