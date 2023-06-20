@@ -37,7 +37,7 @@ const GradeSheetTable = () => {
 
     fetchStudents();
 
-  }, [courseId]);
+  }, [courseId, students, user]);
   
   return (
     <table>
