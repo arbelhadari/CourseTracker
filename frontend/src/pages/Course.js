@@ -7,7 +7,7 @@ import GradeSheetTable from '../components/GradeSheet';
 const Course = () => {
     const { courseId } = useParams();
     const [ course, setCourse ] = useState(null);
-    const {user} = useAuthContext()
+    const { user } = useAuthContext()
 
     useEffect(() => {
         const fetchCourse = async () => {
@@ -16,7 +16,6 @@ const Course = () => {
                   'Authorization' : `Bearer ${user.token}`
               }
           });
-            console.log(response);
             const json = await response.json();
             setCourse(json);
         }
@@ -29,10 +28,17 @@ const Course = () => {
     }
 
     return (
-        <div className="pages">
-          <h1 className="course-page-title">{course.CourseName}</h1>
-          <h2>{course.Year} Semester: {course.Semester}</h2>
-          <h3>Course Details: {course.CourseDetails}</h3>
+        <div>
+        <div className='grade-student'>
+        <div className='grade-sheet'>
+        <div className='titles'>
+        <div className='titles-headlines'>
+        <h1 className="course-page-title">{course.CourseName}</h1>
+        <h2>{course.Year} Semester: {course.Semester}</h2>
+        </div>
+        <h3>Course Details: {course.CourseDetails}</h3>
+        </div>
+        <div className="container grade-sheet-table box">
           <GradeSheetTable/>
           {/* <h2>Grade Sheet:</h2>
           <ul>
@@ -43,6 +49,15 @@ const Course = () => {
             ))}
           </ul> */}
         </div>
+        </div>
+        <div className='container add-student box'>
+                    here will be student form
+        </div>
+        </div>
+        <div className='container statistics box'>
+                    here will be statistics
+        </div>
+      </div>
       )
 }
 
