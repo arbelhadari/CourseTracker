@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const { 
+const {
+    getStudents,
     getAllCourses,
     getCourse,
     createCourse,
@@ -14,12 +15,15 @@ const {
     updateStudent,
     removeStudent
  } = require("../controllers/StudentController");
+ const courseStudentsRouter = express.Router();
 
- router.use(requireAuth)
+ router.use(requireAuth);
 
 // GET all courses
 router.get("/", getAllCourses);
 
+// TODO: GET all student in course
+courseStudentsRouter.get("/:id", getStudents);
 
 // GET a single course
 router.get("/:id", getCourse);
@@ -37,6 +41,13 @@ router.delete("/:id", deleteCourse);
 router.patch("/:id", updateCourse);
 
 
+
+
+
+// GET student
+// router.get("/:id/:studentid", getStudent);
+
+
 // add student to course
 router.post("/:id", addStudent);
 
@@ -47,5 +58,8 @@ router.put("/:id", removeStudent);
 
 // change student's grade
 router.patch("/:id/:Student", updateStudent);
+
+router.use('/course/students', courseStudentsRouter);
+
 
 module.exports = router;

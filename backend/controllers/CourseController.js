@@ -4,6 +4,11 @@ const mongoose = require('mongoose');
 
 
 // get all user's courses
+const getStudents = async (req, res) => {
+    console.log("2");
+    const students = await getStudentsFromGradeSheet(req.params);
+    res.status(200).json(students);
+}
 
 
 // get all students in a course
@@ -36,7 +41,7 @@ const getAllCourses = async (req, res) => {
 // get a single course
 const getCourse = async (req, res) => {
     const { id } = req.params;
-
+    console.log("1")
     if (!mongoose.Types.ObjectId.isValid(id)) {
         return res.status(404).json({error: "bad id"});
     }
@@ -99,6 +104,7 @@ const updateCourse = async (req, res) => {
 
 
 module.exports = {
+    getStudents,
     createCourse,
     getAllCourses,
     getCourse,

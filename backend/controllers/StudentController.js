@@ -3,6 +3,14 @@ const Students = require("../models/StudentModel");
 const mongoose = require('mongoose');
 
 
+async function getStudent(StudentId){
+    // const { StudentId, StudentDOB, Gender } = StudentData;
+    const student = await Student.findOne({StudentId: StudentId});
+    if (!student) return [];
+    return student;
+}
+
+
 async function createStudent(StudentData){
     const { StudentId, StudentDOB, Gender } = StudentData;
     try {
@@ -155,6 +163,7 @@ const updateStudent = async (req, res) => {
 
 
 module.exports = {
+    getStudent,
     addStudent,
     removeStudent,
     updateStudent
