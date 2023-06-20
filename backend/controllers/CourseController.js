@@ -5,8 +5,7 @@ const mongoose = require('mongoose');
 
 // get all user's courses
 const getStudents = async (req, res) => {
-    console.log("2");
-    const students = await getStudentsFromGradeSheet(req.params);
+    const students = await getStudentsFromGradeSheet(req.params['id']);
     res.status(200).json(students);
 }
 
@@ -14,14 +13,14 @@ const getStudents = async (req, res) => {
 // get all students in a course
 async function getStudentsFromGradeSheet(id) {
     try {
-      const course = await Courses.findById({_id: id});
+      const course = await Courses.findById(id);
       if (!course) return [];
       
       // Get the student IDs from the GradeSheet map
-      const studentIds = [...(Object.keys(course.GradeSheet))];
+      const studentIds = [...course.GradeSheet.keys()];
   
       // Find the students with matching IDs
-      const students = await Students.find({ _id: { $in: studentIds } });
+      const students = await Students.find({ StudentId: { $in: studentIds } });
       return students;
     } 
     catch (err) {

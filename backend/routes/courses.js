@@ -19,6 +19,7 @@ const {
 
  router.use(requireAuth);
 
+
 // GET all courses
 router.get("/", getAllCourses);
 
@@ -59,7 +60,7 @@ router.put("/:id", removeStudent);
 // change student's grade
 router.patch("/:id/:Student", updateStudent);
 
-router.use('/course/students', courseStudentsRouter);
 
+router.use('/courses/students', courseStudentsRouter);
 
 module.exports = router;

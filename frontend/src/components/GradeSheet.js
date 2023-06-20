@@ -1,19 +1,38 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { useAuthContext } from '../hooks/useAuthContext';
 
 const GradeSheetTable = () => {
   const { courseId } = useParams();
   const [students, setStudents] = useState([]);
+  const [course, setCourse] = useState(null);
+  const {user} = useAuthContext()
 
   useEffect(() => {
+    
     const fetchStudents = async () => {
       try {
-        const response = await fetch(`/api/courses/students/${courseId}`);
-        console.log(response);
+        const response = await fetch(`/api/students/${courseId}`, {
+          headers: {
+              'Authorization' : `Bearer ${user.token}`
+          }
+      });
+
+      const course_res = await fetch(`/api/courses/${courseId}`, {
+        headers: {
+            'Authorization' : `Bearer ${user.token}`
+        }
+    })
+        const json = await response.json();
+        const json_course = await course_res.json();
+        setStudents(json);
+        setCourse(json_course);
+        console.log(students);
       } catch (error) {
         console.error('Error fetching students:', error);
       }
+      
     };
 
     fetchStudents();
@@ -24,22 +43,26 @@ const GradeSheetTable = () => {
     <table>
       <thead>
         <tr>
-          <th>StudentID</th>
-          <th>StudentDOB</th>
+          <th>ID</th>
+          <th>DOB</th>
           <th>Gender</th>
           <th>Grade</th>
         </tr>
       </thead>
       <tbody>
         {
-        // students.map((student) => (
-        //   <tr key={student.StudentId}>
-        //     <td>{student.StudentId}</td>
-        //     <td>{student.StudentDOB}</td>
-        //     <td>{student.Gender}</td>
-        //     <td>{student.Grade}</td> {/* Assuming the Grade is available in the student object */}
-        //   </tr>
-        // ))
+        students.map((student) => (
+          <tr key={student.StudentId}>
+            <td>{student.StudentId}</td>
+            <td>{new Date(student.StudentDOB).toLocaleDateString('en-US', {
+  day: '2-digit',
+  month: '2-digit',
+  year: 'numeric'
+}).replace(/\//g, '\\')}</td>
+            <td>{student.Gender}</td>
+            <td>{course.GradeSheet[student.StudentId]}</td>
+          </tr>
+        ))
         }
       </tbody>
     </table>
