@@ -26,14 +26,19 @@ const Course = () => {
     }
 
     return (
-        <div className="pages">
-          <h1 className="course-page-title">Course Page</h1>
-          <h2>Course ID: {courseId}</h2>
-          <h2>Course Name: {course.CourseName}</h2>
-          <h2>Professor: {course.ProfessorUsername}</h2>
-          <h2>Semester: {course.Semester}</h2>
-          <h2>Year: {course.Year}</h2>
-          <h2>Grade Sheet:</h2>
+        <div>
+        <div className='grade-student'>
+        <div className='grade-sheet'>
+        <div className='titles'>
+        <div className='titles-headlines'>
+        <h1 className="course-page-title">{course.CourseName}</h1>
+        <h2>{course.Year} Semester: {course.Semester}</h2>
+        </div>
+        <h3>Course Details: {course.CourseDetails}</h3>
+        </div>
+        <div className="container grade-sheet-table box">
+          <GradeSheetTable/>
+          {/* <h2>Grade Sheet:</h2>
           <ul>
             {course.GradeSheet && Object.entries(course.GradeSheet).map(([student, grade]) => (
               <li key={student}>
@@ -49,8 +54,16 @@ const Course = () => {
               </li>
             ))}
           </ul> */}
-          <h2>Course Details: {course.CourseDetails}</h2>
         </div>
+        </div>
+        <div className='container add-student box'>
+                    here will be student form
+        </div>
+        </div>
+        <div className='container statistics box'>
+                    here will be statistics
+        </div>
+      </div>
       )
 }
 

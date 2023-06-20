@@ -204,6 +204,48 @@ form.login button[type="submit"] {
   border: none;
   cursor: pointer;
 }
+
+/* Course Page */
+
+.box {
+  border: 1px solid #ccc;
+  padding: 10px;
+}
+
+.grade-sheet-table {
+  height: 100%;
+}
+
+.add-student {
+  width: 25vw;
+}
+
+.statistics {
+  height: 45vh;
+  margin: 20px;
+}
+
+.grade-student{
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  height: 70vh;
+}
+
+.grade-sheet{
+  display: flex;
+  flex-direction: column;
+  width: 65%;
+  margin-right: 15px;
+}
+
+.titles-headlines{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 50px;
+}
+
 /* .hello{
   font-family: Arial, sans-serif;
         background-color: #F0F2F5;
