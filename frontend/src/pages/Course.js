@@ -5,7 +5,7 @@ import { useAuthContext } from '../hooks/useAuthContext';
 const Course = () => {
     const { courseId } = useParams();
     const [ course, setCourse ] = useState(null);
-    const {user} = useAuthContext()
+    const { user } = useAuthContext()
 
     useEffect(() => {
         const fetchCourse = async () => {
@@ -14,13 +14,12 @@ const Course = () => {
                   'Authorization' : `Bearer ${user.token}`
               }
           });
-            console.log(response);
             const json = await response.json();
             setCourse(json);
         }
 
         fetchCourse();
-    }, [courseId]);
+    }, [courseId, user]);
 
     if (!course) {
         return <div>Loading...</div>;
