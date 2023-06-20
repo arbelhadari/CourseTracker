@@ -1,6 +1,8 @@
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { useAuthContext } from '../hooks/useAuthContext';
+import GradeSheetTable from '../components/GradeSheet';
+
 
 const Course = () => {
     const { courseId } = useParams();
@@ -41,14 +43,6 @@ const Course = () => {
           {/* <h2>Grade Sheet:</h2>
           <ul>
             {course.GradeSheet && Object.entries(course.GradeSheet).map(([student, grade]) => (
-              <li key={student}>
-                {student}: {grade}
-              </li>
-            ))}
-          </ul>
-          {/* <h2>Grade Sheet:</h2>
-          <ul>
-            {Object.entries(course.GradeSheet).map(([student, grade]) => (
               <li key={student}>
                 {student}: {grade}
               </li>
