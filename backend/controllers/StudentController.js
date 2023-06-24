@@ -4,10 +4,15 @@ const mongoose = require('mongoose');
 
 
 async function getStudent(StudentId){
-    // const { StudentId, StudentDOB, Gender } = StudentData;
-    const student = await Student.findOne({StudentId: StudentId});
-    if (!student) return [];
-    return student;
+    try {
+        const student = await Students.findOne({StudentId: StudentId});
+        if (!student) return [];
+        return student;
+    }
+    catch (err) {
+        console.log(err);
+        return [];
+    }
 }
 
 
