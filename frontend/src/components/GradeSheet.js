@@ -13,10 +13,10 @@ const GradeSheetTable = () => {
       try {
         const students_res = await fetch(`/api/students/${courseId}`, {
           headers: {'Authorization' : `Bearer ${user.token}`}
-      });
-      const course_res = await fetch(`/api/courses/${courseId}`, {
-        headers: {'Authorization' : `Bearer ${user.token}`}
-    })
+        });
+        const course_res = await fetch(`/api/courses/${courseId}`, {
+          headers: {'Authorization' : `Bearer ${user.token}`}
+        });
         const json_students = await students_res.json();
         const json_course = await course_res.json();
         setStudents(json_students);
@@ -48,12 +48,8 @@ const GradeSheetTable = () => {
               <td>{new Date(student.StudentDOB).toLocaleDateString('en-GB')}</td>
               <td>{student.Gender}</td>
               <td>{course && course.GradeSheet[student.StudentId]}</td>
-              <td>
-                <span className="material-symbols-outlined">edit</span>
-              </td>
-              <td>
-                <span className="material-symbols-outlined">delete</span>
-              </td>
+              <td><span className="material-symbols-outlined">edit</span></td>
+              <td><span className="material-symbols-outlined">delete</span></td>
             </tr>
           ))}
         </tbody>
