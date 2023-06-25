@@ -1,5 +1,6 @@
 /* google font */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;800&family=VT323&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
 
 /* layout */
 :root {
@@ -246,13 +247,35 @@ form.login button[type="submit"] {
   gap: 50px;
 }
 
-/* .hello{
-  font-family: Arial, sans-serif;
-        background-color: #F0F2F5;
-        padding: 10px;
-        border: 1px solid #dddfe2;
-        border-radius: 5px;
-        box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
-        display: inline-block;
-        color: #1d2129;
-    } */
+.grade-table {
+  width: 100%;
+  border-collapse: collapse;
+  overflow-y: auto; /* Add vertical scrollbar */
+}
+
+.grade-table th{
+  padding: 8px;
+  text-align: left;
+}
+.grade-table td {
+  padding: 8px;
+  text-align: left;
+  font-family: "Roboto", serif;
+}
+
+.grade-table tbody td:last-child {
+  width: 5px;
+}
+
+.material-symbols-outlined {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background-color: #fbfbfb;
+  color: #333;
+  cursor: pointer;
+  font-size: 20px;
+}

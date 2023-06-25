@@ -20,7 +20,6 @@ const CourseForm = () => {
           return
         }
 
-        // TODO: figure out how to get the current username 
         const ProfessorEmail = user.email.split('@')[0]
         const course = {CourseName, Year, Semester, CourseDetails, ProfessorEmail};
         const response = await fetch('/api/courses', {
@@ -40,7 +39,6 @@ const CourseForm = () => {
             setSemester("");
             setCourseDetails("");
             setError(null);
-            // console.log("New Course Added", json);
             dispatch({type: "CREATE_COURSE", payload: json})
         }
     };
