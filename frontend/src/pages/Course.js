@@ -3,12 +3,15 @@ import { useEffect, useState } from 'react';
 import { useAuthContext } from '../hooks/useAuthContext';
 import GradeSheetTable from '../components/GradeSheet';
 import StudentForm from '../components/StudentForm';
+import Histogram from '../components/GradeHistogram';
 
 
 const Course = () => {
     const { courseId } = useParams();
-    const [ course, setCourse ] = useState(null);
     const { user } = useAuthContext()
+
+    const [ course, setCourse ] = useState(null);
+    const [ students, setStudents ] = useState([]);
 
     useEffect(() => {
         const fetchCourse = async () => {
@@ -23,12 +26,28 @@ const Course = () => {
         fetchCourse();
     }, [courseId, user]);
 
+    useEffect(() => {
+      const fetchStudents = async () => {
+        try {
+          const res = await fetch(`/api/students/${courseId}`, {
+            headers: {'Authorization' : `Bearer ${user.token}`}
+          });
+          const json = await res.json();
+          setStudents(json);
+        } 
+        catch (error) {
+          console.error('Error fetching students:', error);
+        }};
+      fetchStudents();
+    }, [user, courseId]);
+
+    console.log(students)
     if (!course) {
         return <div>Loading...</div>;
     }
 
     return (
-        <div>
+        <div className='container'>
         <div className='grade-student'>
         <div className='grade-sheet'>
         <div className='titles'>
@@ -47,7 +66,7 @@ const Course = () => {
         </div>
         </div>
         <div className='container statistics box'>
-                    here will be statistics
+          <Histogram/>
         </div>
       </div>
       )
