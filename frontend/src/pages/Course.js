@@ -12,15 +12,14 @@ const Course = () => {
 
     useEffect(() => {
         const fetchCourse = async () => {
+          if (user && user.token){
             const response = await fetch(`/api/courses/${courseId}`, {
-              headers: {
-                  'Authorization' : `Bearer ${user.token}`
-              }
+              headers: { 'Authorization': `Bearer ${user.token}` }
           });
             const json = await response.json();
             setCourse(json);
-        }
-
+          }
+        };
         fetchCourse();
     }, [courseId, user]);
 
@@ -41,18 +40,9 @@ const Course = () => {
         </div>
         <div className="container grade-sheet-table box">
           <GradeSheetTable/>
-          {/* <h2>Grade Sheet:</h2>
-          <ul>
-            {course.GradeSheet && Object.entries(course.GradeSheet).map(([student, grade]) => (
-              <li key={student}>
-                {student}: {grade}
-              </li>
-            ))}
-          </ul> */}
         </div>
         </div>
         <div className='container add-student box'>
-                    {/* here will be student form */}
           <StudentForm/>
         </div>
         </div>

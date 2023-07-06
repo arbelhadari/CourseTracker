@@ -1,15 +1,11 @@
 import { useState } from "react";
 import { useParams } from 'react-router-dom';
 import { useStudentsContext } from "../hooks/useStudentsContext";
-// import { useCoursesContext } from "../hooks/useCoursesContext";
 import { useAuthContext } from "../hooks/useAuthContext";
 
 
 const StudentForm = () => {
-    // TODO: create StudentContext thingy
     const { dispatch } = useStudentsContext();
-    // const { dispatch } = useCoursesContext();
-    
     const { user } = useAuthContext();
 
     const { courseId } = useParams();
@@ -26,23 +22,31 @@ const StudentForm = () => {
       const formattedValue = inputValue.slice(0, 9); // Limit to 9 digits
     
       setStudentId(formattedValue);
-      fetch(`/api/students/${formattedValue}`, {
-        method: "PATCH",
-        // headers: { "Content-Type": "application/json", 'Authorization': `Bearer ${user.token}` }
-    })
-        .then((response) => response.json())
-        .then((data) => {
-          console.log(data);
-          setStudentExists(data.exists);
-        })
-        .catch((error) => {
-          console.error("Error checking student existence:", error);
-          setStudentExists(false); // Set to false in case of any error
-        });
+      setError(null);
+      setStudentExists(false);
+      if (formattedValue.length === 9) {
+        fetch(`/api/students/${formattedValue}/studentid`, {
+                method: "GET",
+                headers: { "Content-Type": "application/json", 'Authorization': `Bearer ${user.token}` }
+            })
+                .then((response) => response.json())
+                .then((data) => {
+                  console.log(data);
+                  setStudentExists(data.exist);
+                  console.log(data.exist);
+                  setStudentDOB(data.StudentDOB.split("T")[0]);
+                  setGender(data.Gender);
+                  setError(null);
+                })
+                .catch((error) => {
+                  console.error("Error checking student existence:", error);
+                  setStudentExists(false); // Set to false in case of any error
+                  setStudentDOB("");
+                  setGender("");
+                });
+      }
     };
     
-
-
     const handleSubmit = async (e) => {
         e.preventDefault();
         
@@ -66,8 +70,10 @@ const StudentForm = () => {
             setGender("");
             setGrade("");
             setError(null);
-            dispatch({type: "CREATE_STUDENT", payload: json})
+            dispatch({type: "CREATE_STUDENT", payload: json});
+            window.location.reload()
         }
+
     };
 
     return (
@@ -134,79 +140,15 @@ const StudentForm = () => {
               />
             </div>
             <button type="submit">Submit</button>
+            
             {studentExists && (
-    <p>Student already exists in the database. Enter grade only</p>
-)}
+              <div className="error-box">
+                <p id="errorMessage">Student already exists in the database. Enter grade only</p>
+              </div>)}
          {Error && <div className="error">{Error}</div>}
           </form>
         </div>
       );
-
-    // return (
-    //     <form className="create" onSubmit={handleSubmit}>
-    //       <h3>Add a New Course</h3>
-    //       <label htmlFor="course-name">Course Name: </label>
-    //         <input
-    //           type="text"
-    //           id="course-name"
-    //           value={CourseName}
-    //           onChange={(e) => setCourseName(e.target.value)}
-    //           required
-    //         />
-
-    //       <label htmlFor="year">Year: </label>
-    //       <select
-    //         id="year"
-    //         value={Year}
-    //         onChange={(e) => setYear(e.target.value)}
-    //         required
-    //       >
-    //       <option value="" disabled>Select a Year: </option>
-    //       {Array.from({ length: new Date().getFullYear() - 1979 }, (_, index) => (
-    //         <option key={index} value={1980 + index}>{1980 + index}</option>
-    //       ))}
-    //       </select>
-
-    //       <label>Semester:</label>
-    //         <div className="semester-options">
-    //           <label htmlFor="semester-a">
-    //             <input
-    //               className="radio"
-    //               type="radio"
-    //               id="semester-a"
-    //               name="semester"
-    //               value="a"
-    //               checked={Semester === 'a'}
-    //               onChange={(e) => setSemester(e.target.value)}
-    //               required
-    //             />a
-    //           </label>
-
-    //           <label htmlFor="semester-b">
-    //             <input
-    //               className="radio"
-    //               type="radio"
-    //               id="semester-b"
-    //               name="semester"
-    //               value="b"
-    //               checked={Semester === 'b'}
-    //               onChange={(e) => setSemester(e.target.value)}
-    //               required
-    //             />b
-    //           </label>
-    //         </div>
-
-    //       <label htmlFor="course-details">Course Details:</label>
-    //         <textarea
-    //         id="course-details"
-    //         value={CourseDetails}
-    //         onChange={(e) => setCourseDetails(e.target.value)}
-    //         ></textarea>
-
-    //       <button type="submit">Add Course</button>
-    //       {Error && <div className="error">{Error}</div>}
-    //   </form>
-// )
 };
 
 export default StudentForm;
