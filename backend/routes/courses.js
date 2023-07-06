@@ -18,6 +18,9 @@ const {
 
  router.use(requireAuth);
 
+// change student's grade
+router.patch("/:id/Student", updateStudent);
+
 
 // GET all courses
 router.get("/", getAllCourses);
@@ -47,8 +50,6 @@ router.post("/:id", addStudent);
 router.put("/:id", removeStudent);
 
 
-// change student's grade
-router.patch("/:id/:Student", updateStudent);      // will not work - need to move to another router
 
 
 module.exports = router;
