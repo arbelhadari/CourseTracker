@@ -77,7 +77,7 @@ const StudentForm = () => {
     };
 
     return (
-        <div className="student_form">
+        <div>
           <form className="student_form" onSubmit={handleSubmit}>
             <h2>Add a Student</h2>
             <label htmlFor="studentId">Student ID:</label>
