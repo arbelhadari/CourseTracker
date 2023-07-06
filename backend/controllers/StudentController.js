@@ -3,10 +3,23 @@ const Students = require("../models/StudentModel");
 const mongoose = require('mongoose');
 
 
+const GetOneStudent = async (req, res) => {
+    console.log("------------------------------------------------------------------------------------------")
+    const student = await getStudent(req.params['id']);
+    if (!student) {
+        res.status(404).json({exist: false})
+    }
+    res.status(200).json({exist: true, Gender: student.Gender, StudentDOB: student.StudentDOB})
+}
+
+
 async function getStudent(StudentId){
     try {
         const student = await Students.findOne({StudentId: StudentId});
-        if (!student) return [];
+        if (!student) {
+            console.log("cannot find student");
+            return false;
+        }
         return student;
     }
     catch (err) {
@@ -93,10 +106,12 @@ const addStudent = async (req, res) => {
                 incrementCourseCount(req.body.StudentId);
             }
         }
+        console.log(course.GradeSheet);
         course.GradeSheet.set(req.body.StudentId, req.body.Grade);
+        console.log(course.GradeSheet);
         try {
             await course.save();
-            res.status(200).json(course);
+            res.status(200).json(student);
         } catch (err) {
             res.status(500).json(err);
         }
@@ -168,7 +183,7 @@ const updateStudent = async (req, res) => {
 
 
 module.exports = {
-    getStudent,
+    GetOneStudent,
     addStudent,
     removeStudent,
     updateStudent

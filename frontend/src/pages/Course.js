@@ -2,6 +2,7 @@ import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { useAuthContext } from '../hooks/useAuthContext';
 import GradeSheetTable from '../components/GradeSheet';
+import StudentForm from '../components/StudentForm';
 
 
 const Course = () => {
@@ -51,7 +52,8 @@ const Course = () => {
         </div>
         </div>
         <div className='container add-student box'>
-                    here will be student form
+                    {/* here will be student form */}
+          <StudentForm/>
         </div>
         </div>
         <div className='container statistics box'>

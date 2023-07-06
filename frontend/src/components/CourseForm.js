@@ -4,7 +4,7 @@ import { useAuthContext } from "../hooks/useAuthContext";
 
 const CourseForm = () => {
 
-    const { dispatch } = useCoursesContext()
+    const {dispatch} = useCoursesContext()
     const {user} = useAuthContext()
     const [CourseName, setCourseName] = useState("");
     const [Year, setYear] = useState("");
