@@ -11,8 +11,6 @@ const Home = () => {
     const {user} = useAuthContext()
     useEffect(() => {
         const fetchCourses = async () => {
-            // TODO: in production - need to change the fetch path to specific full path
-
             const response = await fetch("/api/courses", {
                 headers: {
                     'Authorization' : `Bearer ${user.token}`

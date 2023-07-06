@@ -4,10 +4,9 @@ const mongoose = require('mongoose');
 
 
 const GetOneStudent = async (req, res) => {
-    console.log("------------------------------------------------------------------------------------------")
     const student = await getStudent(req.params['id']);
     if (!student) {
-        res.status(404).json({exist: false})
+        return res.status(404).json({exist: false})
     }
     res.status(200).json({exist: true, Gender: student.Gender, StudentDOB: student.StudentDOB})
 }
@@ -127,7 +126,7 @@ const removeStudent = async (req, res) => {
         if (!mongoose.Types.ObjectId.isValid(id)) {
             return res.status(404).json({error: "bad id"});
         }
-
+        console.log(req.body.StudentId)
         let course = await Courses.findById({_id: id});
         if (!course) {
             return res.status(500).send({mssg: "Courses not found"});
@@ -167,8 +166,8 @@ const updateStudent = async (req, res) => {
             return res.status(500).send({mssg: "Courses not found"});
         }
 
-        if (course.GradeSheet.has(req.body.StudentId)) {
-            course.GradeSheet.set(req.body.StudentId, req.body.newGrade);
+        if (course.GradeSheet.has(req.body.studentId)) {
+            course.GradeSheet.set(req.body.studentId, req.body.newGrade);
             await course.save();
             return res.status(200).json(course[0]);
         }

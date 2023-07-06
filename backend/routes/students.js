@@ -5,9 +5,9 @@ const { GetOneStudent } = require('../controllers/StudentController')
  const requireAuth = require('../middleware/requireAuth');
 
  router.use(requireAuth);
+ 
+ router.get("/:id/studentid", GetOneStudent);
 
 router.get("/:id", getStudents);
-
-router.patch("/:id", GetOneStudent);
 
 module.exports = router;

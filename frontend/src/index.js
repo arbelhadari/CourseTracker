@@ -11,9 +11,9 @@ root.render(
   <React.StrictMode>
     <AuthContextProvider>
       <CourseContextProvider>
-      <StudentContextProvider>
+        <StudentContextProvider>
           <App />
-      </StudentContextProvider>
+        </StudentContextProvider>
       </CourseContextProvider>
     </AuthContextProvider>
   </React.StrictMode>
