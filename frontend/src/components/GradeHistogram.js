@@ -23,7 +23,8 @@ const data = [
   { bin: "90-100", count: 10 },
 ];
 
-const Histogram = () => {
+const Histogram = ({ studentsData }) => {
+    console.log(studentsData)
   return (
     <ResponsiveContainer width="50%" height="50%">
         <BarChart
