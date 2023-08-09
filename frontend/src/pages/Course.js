@@ -11,39 +11,50 @@ const Course = () => {
     const { user } = useAuthContext()
 
     const [ course, setCourse ] = useState(null);
-    const [ students, setStudents ] = useState([]);
+    const [ studentsData, setStudentsData ] = useState([]);
+
+
 
     useEffect(() => {
-        const fetchCourse = async () => {
-          if (user && user.token){
-            const response = await fetch(`/api/courses/${courseId}`, {
-              headers: { 'Authorization': `Bearer ${user.token}` }
-          });
-            const json = await response.json();
-            setCourse(json);
-          }
-        };
+      const fetchCourse = async () => {
+        if (user && user.token){
+          const response = await fetch(`/api/courses/${courseId}`, {
+            headers: { 'Authorization': `Bearer ${user.token}` }
+        });
+          const course = await response.json();
+          setCourse(course);
+        }
+      };
+
         fetchCourse();
     }, [courseId, user]);
 
     useEffect(() => {
       const fetchStudents = async () => {
         try {
-          const res = await fetch(`/api/students/${courseId}`, {
-            headers: {'Authorization' : `Bearer ${user.token}`}
-          });
-          const json = await res.json();
-          setStudents(json);
-        } 
-        catch (error) {
+          if (course && course.GradeSheet) {
+            const res = await fetch(`/api/students/${courseId}`, {
+              headers: { 'Authorization': `Bearer ${user.token}` }
+            });
+            const studentJson = await res.json();
+            const modifiedStudents = Object.entries(studentJson).map(([studentId, data]) => {
+              return {
+                ...data,
+                grade: course.GradeSheet[data.StudentId]
+              };
+            });
+            setStudentsData(modifiedStudents);
+          }
+        } catch (error) {
           console.error('Error fetching students:', error);
-        }};
+        }
+      };
+    
       fetchStudents();
-    }, [user, courseId]);
+    }, [course, courseId, user]);
 
-    console.log(students)
     if (!course) {
-        return <div>Loading...</div>;
+      return <div>Loading...</div>;
     }
 
     return (
@@ -66,7 +77,7 @@ const Course = () => {
         </div>
         </div>
         <div className='container statistics box'>
-          <Histogram/>
+          <Histogram studentsData={ studentsData }/>
         </div>
       </div>
       )
