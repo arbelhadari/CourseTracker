@@ -3,32 +3,62 @@ import { useEffect, useState } from 'react';
 import { useAuthContext } from '../hooks/useAuthContext';
 import GradeSheetTable from '../components/GradeSheet';
 import StudentForm from '../components/StudentForm';
+import Histogram from '../components/GradeHistogram';
 
 
 const Course = () => {
     const { courseId } = useParams();
-    const [ course, setCourse ] = useState(null);
     const { user } = useAuthContext()
 
+    const [ course, setCourse ] = useState(null);
+    const [ studentsData, setStudentsData ] = useState([]);
+
+
+
     useEffect(() => {
-        const fetchCourse = async () => {
-          if (user && user.token){
-            const response = await fetch(`/api/courses/${courseId}`, {
-              headers: { 'Authorization': `Bearer ${user.token}` }
-          });
-            const json = await response.json();
-            setCourse(json);
-          }
-        };
+      const fetchCourse = async () => {
+        if (user && user.token){
+          const response = await fetch(`/api/courses/${courseId}`, {
+            headers: { 'Authorization': `Bearer ${user.token}` }
+        });
+          const course = await response.json();
+          setCourse(course);
+        }
+      };
+
         fetchCourse();
     }, [courseId, user]);
 
+    useEffect(() => {
+      const fetchStudents = async () => {
+        try {
+          if (course && course.GradeSheet) {
+            const res = await fetch(`/api/students/${courseId}`, {
+              headers: { 'Authorization': `Bearer ${user.token}` }
+            });
+            const studentJson = await res.json();
+            const modifiedStudents = Object.entries(studentJson).map(([studentId, data]) => {
+              return {
+                ...data,
+                grade: course.GradeSheet[data.StudentId]
+              };
+            });
+            setStudentsData(modifiedStudents);
+          }
+        } catch (error) {
+          console.error('Error fetching students:', error);
+        }
+      };
+    
+      fetchStudents();
+    }, [course, courseId, user]);
+
     if (!course) {
-        return <div>Loading...</div>;
+      return <div>Loading...</div>;
     }
 
     return (
-        <div>
+        <div className='container'>
         <div className='grade-student'>
         <div className='grade-sheet'>
         <div className='titles'>
@@ -47,7 +77,7 @@ const Course = () => {
         </div>
         </div>
         <div className='container statistics box'>
-                    here will be statistics
+          <Histogram studentsData={ studentsData }/>
         </div>
       </div>
       )
