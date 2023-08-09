@@ -40,6 +40,14 @@ const GradeSheetTable = () => {
   const handleEditClick = (studentId) => {
     setSelectedStudentId(studentId);
     setShowTextWindow(true);
+    const tableRows = document.querySelectorAll('.grade-table tbody tr');
+  tableRows.forEach(row => {
+    if (row.dataset.studentId === studentId) {
+      row.classList.add('edit-mode');
+    } else {
+      row.classList.remove('edit-mode');
+    }
+  });
   };
 
   const handleGradeUpdate = () => {
@@ -100,7 +108,7 @@ const GradeSheetTable = () => {
         </thead>
         <tbody>
           {students.map((student) => (
-            <tr key={student.StudentId}>
+            <tr key={student.StudentId} data-student-id={student.StudentId}>
               <td>{student.StudentId}</td>
               <td>{new Date(student.StudentDOB).toLocaleDateString('en-GB')}</td>
               <td>{student.Gender}</td>
@@ -110,7 +118,7 @@ const GradeSheetTable = () => {
                     type="number"
                     value={updatedGrade}
                     onChange={(e) => setUpdatedGrade(e.target.value)}
-                    style={{ width: '50px' }}
+                    style={{ width: '40px' }}
                   />
                 ) : (
                   course && course.GradeSheet[student.StudentId]
@@ -118,7 +126,10 @@ const GradeSheetTable = () => {
               </td>
               <td>
                 {selectedStudentId === student.StudentId && showTextWindow ? (
-                  <button onClick={handleGradeUpdate}>Update</button>
+                  <button 
+                  className="update-button"
+                  onClick={handleGradeUpdate}
+                  >Update</button>
                 ) : (
                   <span
                     className="material-symbols-outlined"
