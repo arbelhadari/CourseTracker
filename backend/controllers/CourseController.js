@@ -61,6 +61,7 @@ const createCourse = async (req, res) => {
         const course = await Courses.create({
             CourseName, ProfessorID, Semester, Year, GradeSheet, CourseDetails
         });
+
         res.status(200).json(course);
     } catch (err) {
         res.status(400).json({err: err.message});

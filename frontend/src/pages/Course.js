@@ -4,6 +4,7 @@ import { useAuthContext } from '../hooks/useAuthContext';
 import GradeSheetTable from '../components/GradeSheet';
 import StudentForm from '../components/StudentForm';
 import Histogram from '../components/GradeHistogram';
+import AgeDistribution from '../components/AgeDistribution';
 
 
 const Course = () => {
@@ -59,13 +60,16 @@ const Course = () => {
 
     return (
         <div className='container'>
+            <div className='titles-headlines'>
+                  <h1 className="course-page-title" style={{height: "1vh", fontSize:"xxx-large"}}>
+                    {course.CourseName}
+                  </h1>
+                  <h3>{course.Year} {course.Semester.toUpperCase()}</h3>
+              </div>
           <div className='grade-student'>
             <div className='grade-sheet'>
               <div className='titles'>
-                <div className='titles-headlines'>
-                  <h1 className="course-page-title">{course.CourseName}</h1>
-                </div>
-                <h2>{course.Year}{course.Semester}</h2>
+
                 <h3>Course Details: {course.CourseDetails}</h3>
               </div>
               <div className="container grade-sheet-table box">
@@ -78,6 +82,7 @@ const Course = () => {
           </div>
           <div className='container statistics box'>
             <Histogram studentsData={ studentsData }/>
+            <AgeDistribution studentsData={ studentsData }/>
           </div>
       </div>
       )

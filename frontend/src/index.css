@@ -46,6 +46,7 @@ header a {
   padding: 20px;
   position: relative;
   box-shadow: 2px 2px 5px rgba(0,0,0,0.05);
+  width: 100vh;
 }
 .course-details h4 {
   margin: 0 0 10px 0;
@@ -211,36 +212,21 @@ form.login button[type="submit"] {
 /* Course Page */
 
 .titles h2 {
-  margin: 0;
   margin-bottom: 10px;
   font-size: 1.2em;
   color: var(--primary);
 }
 
-.titles-headlines {
-  display: flex;
-  align-items: center;
-  /* gap: 30px; */
-}
- 
-.course-page-title {
-  font-size: 2.5em;
-  color: var(--primary);
-  margin: 0;
-}
-
-/* .titles {
-  margin-bottom: 20px;
-} */
-
 .grade-sheet-table {
   height: 100%;
   width: 100%;
   padding-right: 10px;
+  overflow-y: auto;
 }
 
 .add-student {
-  width: 25vw;
+  width: 15vw;
+  padding-top: 5%;
 }
 
 .statistics {
@@ -264,9 +250,9 @@ form.login button[type="submit"] {
 
 .titles-headlines{
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
-  gap: 50px;
+  color: var(--primary);
 }
 
 /* Grade Sheet */
@@ -324,10 +310,8 @@ form.login button[type="submit"] {
 }
 
 .update-button {
-  /* margin-top: 10px; */
   background-color: var(--primary);
   color: white;
-  /* padding: 8px 16px; */
   border-radius: 1px;
   border: none;
   cursor: pointer;
@@ -336,8 +320,7 @@ form.login button[type="submit"] {
 /* Student Form */
 .student_form {
   background-color: white;
-  height: 450px;
-  /* margin: 0 auto; */
+  height: clamp(500px, 50vh,1000px);
   padding: 15px;
   border-radius: 8px;
   box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.1);
