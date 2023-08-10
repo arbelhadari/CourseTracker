@@ -30,7 +30,7 @@ const Histogram = ({ studentsData }) => {
         <XAxis dataKey="bin" />
         <YAxis domain={[0, maxCount + 2]}>
             <Label
-            value="Student count"
+            value="Student Count"
             position="insideLeft"
             angle={-90}
             offset={-15}
