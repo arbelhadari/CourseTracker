@@ -4,7 +4,15 @@ import { useAuthContext } from '../hooks/useAuthContext';
 import GradeSheetTable from '../components/GradeSheet';
 import StudentForm from '../components/StudentForm';
 import Histogram from '../components/GradeHistogram';
-import AgeDistribution from '../components/AgeDistribution';
+import Distribution from '../components/Distribution';
+import { 
+  categorizeStudentsByAge, 
+  categorizeStudentsByGender,
+  categorizeStudentsByGrade,
+  getAverageGrade,
+  getMinGrade,
+  getMaxGrade 
+} from '../utils';
 
 
 const Course = () => {
@@ -78,7 +86,23 @@ const Course = () => {
             </div>
           </div>
           <div className='container statistics box'>
-            <Histogram studentsData={ studentsData }/>
+            <Histogram studentsData={ categorizeStudentsByGrade(studentsData) }/>
+            <Distribution studentsData={ categorizeStudentsByAge(studentsData) }/>
+            <Distribution studentsData={ categorizeStudentsByGender(studentsData) }/>
+            <div className="number-stats-container">
+              <div className='average-grade'>
+                <p className='num-stat'>{getAverageGrade(studentsData)}</p>
+                <p>Average Grade</p>
+              </div>
+              <div className='min-grade'>
+                <p className='num-stat'>{getMinGrade(studentsData)}</p>
+                <p>Lowest Grade</p>
+              </div>
+              <div className='max-grade'>
+                <p className='num-stat'>{getMaxGrade(studentsData)}</p>
+                <p>Highest Grade</p>
+              </div>
+            </div>
           </div>
       </div>
       )
