@@ -31,9 +31,7 @@ const StudentForm = () => {
             })
                 .then((response) => response.json())
                 .then((data) => {
-                  console.log(data);
                   setStudentExists(data.exist);
-                  console.log(data.exist);
                   setStudentDOB(data.StudentDOB.split("T")[0]);
                   setGender(data.Gender);
                   setError(null);
@@ -77,7 +75,6 @@ const StudentForm = () => {
     };
 
     return (
-        <div>
           <form className="student_form" onSubmit={handleSubmit}>
             <h2>Add a Student</h2>
             <label htmlFor="studentId">Student ID:</label>
@@ -147,7 +144,6 @@ const StudentForm = () => {
               </div>)}
          {Error && <div className="error">{Error}</div>}
           </form>
-        </div>
       );
 };
 

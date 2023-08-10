@@ -46,6 +46,7 @@ header a {
   padding: 20px;
   position: relative;
   box-shadow: 2px 2px 5px rgba(0,0,0,0.05);
+  width: 100vh;
 }
 .course-details h4 {
   margin: 0 0 10px 0;
@@ -319,7 +320,7 @@ form.login button[type="submit"] {
 /* Student Form */
 .student_form {
   background-color: white;
-  height: 450px;
+  height: clamp(500px, 50vh,1000px);
   padding: 15px;
   border-radius: 8px;
   box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.1);

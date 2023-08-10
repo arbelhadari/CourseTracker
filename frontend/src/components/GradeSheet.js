@@ -68,6 +68,7 @@ const GradeSheetTable = () => {
   });
     // Update the course state with the updated gradesheet
     setCourse(updatedCourse);
+    window.location.reload()
 
     // Clear the updated grade value and close the modal
     setUpdatedGrade('');
@@ -84,10 +85,7 @@ const GradeSheetTable = () => {
         headers: { "Content-Type": "application/json", 'Authorization': `Bearer ${user.token}` }
       });
 
-      // Update the students state by removing the deleted student
-      setStudents((prevStudents) =>
-      prevStudents.filter((student) => student.StudentId !== studentId)
-      );
+      window.location.reload()
     } catch (error) {
       console.error('Error deleting student:', error);
     }
