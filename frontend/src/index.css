@@ -79,6 +79,8 @@ header a {
   height: 400px;
   width: 400px;
   margin: 0 auto;
+  box-shadow: 2px 2px 5px rgba(0,0,0,0.05);
+  border-radius: 4px;
 }
 
 .create h3 {
@@ -210,6 +212,7 @@ form.login button[type="submit"] {
 
 .titles h2 {
   margin: 0;
+  margin-bottom: 10px;
   font-size: 1.2em;
   color: var(--primary);
 }
@@ -217,21 +220,22 @@ form.login button[type="submit"] {
 .titles-headlines {
   display: flex;
   align-items: center;
-  gap: 50px;
+  /* gap: 30px; */
 }
  
 .course-page-title {
-  font-size: 1.5em;
+  font-size: 2.5em;
   color: var(--primary);
+  margin: 0;
 }
 
-.titles {
+/* .titles {
   margin-bottom: 20px;
-}
+} */
 
 .grade-sheet-table {
   height: 100%;
-  width: 110%;
+  width: 100%;
   padding-right: 10px;
 }
 
@@ -274,8 +278,6 @@ form.login button[type="submit"] {
   overflow-y: auto;
   border-radius: 8px;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
-  /* padding: 50px; */
-  margin: 10px;
 }
 
 .grade-table th {
@@ -329,13 +331,6 @@ form.login button[type="submit"] {
   border-radius: 1px;
   border: none;
   cursor: pointer;
-}
-
-/* Additional styles */
-.grade-table-container {
-  border-radius: 8px;
-  overflow: hidden;
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 /* Student Form */
