@@ -1,5 +1,4 @@
 import React from "react";
-import {categorizeStudentsByGrade} from "../utils.js"
 
 import {
   BarChart,
@@ -14,10 +13,12 @@ import {
 
 
 const Histogram = ({ studentsData }) => {
+  const maxCount = Math.max(...studentsData.map((entry) => entry.count));
+
   return (
-    <ResponsiveContainer width="50%" height="50%">
+    <ResponsiveContainer>
         <BarChart
-        data={categorizeStudentsByGrade(studentsData)}
+        data={studentsData}
         margin={{
             top: 5,
             right: 30,
@@ -25,9 +26,9 @@ const Histogram = ({ studentsData }) => {
             bottom: 5
         }}
         >
-        <CartesianGrid strokeDasharray="3 3" />
+        <CartesianGrid strokeDasharray='2 5' fill='white'/>
         <XAxis dataKey="bin" />
-        <YAxis domain={[0, 21]}>
+        <YAxis domain={[0, maxCount + 2]}>
             <Label
             value="Student count"
             position="insideLeft"
@@ -37,7 +38,7 @@ const Histogram = ({ studentsData }) => {
             />
         </YAxis>
         <Tooltip />
-        <Bar dataKey="count" fill="#8884d8" />
+        <Bar dataKey="count" fill="#1aac83" />
         </BarChart>
     </ResponsiveContainer>
   );
