@@ -16,7 +16,7 @@ const Histogram = ({ studentsData }) => {
   const maxCount = Math.max(...studentsData.map((entry) => entry.count));
 
   return (
-    <ResponsiveContainer width="50%" height="50%">
+    <ResponsiveContainer>
         <BarChart
         data={studentsData}
         margin={{
@@ -26,7 +26,7 @@ const Histogram = ({ studentsData }) => {
             bottom: 5
         }}
         >
-        <CartesianGrid />
+        <CartesianGrid strokeDasharray='2 5' fill='white'/>
         <XAxis dataKey="bin" />
         <YAxis domain={[0, maxCount + 2]}>
             <Label

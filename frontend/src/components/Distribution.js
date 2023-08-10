@@ -64,16 +64,16 @@ export default class Distribution extends PureComponent {
     const { studentsData } = this.props;
 
     return (
-      <ResponsiveContainer width="50%" height="50%">
-        <PieChart width={400} height={400}>
+      <ResponsiveContainer width="80%" height="80%">
+        <PieChart width={300} height={300}>
           <Pie
             activeIndex={this.state.activeIndex}
             activeShape={renderActiveShape}
             data={studentsData}
             cx="50%"
             cy="50%"
-            innerRadius={60}
-            outerRadius={80}
+            innerRadius={70}
+            outerRadius={90}
             fill="#1aac83"
             dataKey="value"
             onMouseEnter={this.onPieEnter}

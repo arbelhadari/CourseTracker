@@ -88,23 +88,33 @@ const Course = () => {
               <StudentForm/>
             </div>
           </div>
-          <div className='container statistics box'>
+          <div className='hist-container'>
+          <p className='title'>Grades Distribution</p>
             <Histogram studentsData={ categorizeStudentsByGrade(studentsData) }/>
-            <Distribution studentsData={ categorizeStudentsByAge(studentsData) }/>
-            <Distribution studentsData={ categorizeStudentsByGender(studentsData) }/>
-            <div className="number-stats-container">
-              <div className='average-grade'>
-                <p className='num-stat'>{getAverageGrade(studentsData)}</p>
-                <p>Average Grade</p>
-              </div>
-              <div className='min-grade'>
-                <p className='num-stat'>{getMinGrade(studentsData)}</p>
-                <p>Lowest Grade</p>
-              </div>
-              <div className='max-grade'>
-                <p className='num-stat'>{getMaxGrade(studentsData)}</p>
-                <p>Highest Grade</p>
-              </div>
+          </div>
+          <div className='dist-container'>
+            <div className='inner-dist'>
+              <p className='title'>Age</p>
+              <Distribution studentsData={ categorizeStudentsByAge(studentsData) }/>
+            </div>
+            <div className='inner-dist'>
+              <p className='title'>Gender</p>
+              <Distribution studentsData={ categorizeStudentsByGender(studentsData) }/>
+            </div>
+          </div>
+          
+          <div className="number-stats-container">
+          <div className='num-stat'>
+              <p className='num'>{getMinGrade(studentsData)}</p>
+              <p className='num-title'>Lowest Grade</p>
+            </div>
+            <div className='num-stat'>
+              <p className='num'>{getAverageGrade(studentsData)}</p>
+              <p className='num-title'>Average Grade</p>
+            </div>
+            <div className='num-stat'>
+              <p className='num'>{getMaxGrade(studentsData)}</p>
+              <p className='num-title'>Highest Grade</p>
             </div>
           </div>
       </div>
