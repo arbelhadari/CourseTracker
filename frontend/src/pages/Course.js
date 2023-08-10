@@ -60,27 +60,26 @@ const Course = () => {
 
     return (
         <div className='container'>
-        <div className='grade-student'>
-        <div className='grade-sheet'>
-        <div className='titles'>
-        <div className='titles-headlines'>
-        <h1 className="course-page-title">{course.CourseName}</h1>
-        <h2>{course.Year} Semester: {course.Semester}</h2>
-        </div>
-        <h3>Course Details: {course.CourseDetails}</h3>
-        </div>
-        <div className="container grade-sheet-table box">
-          <GradeSheetTable/>
-        </div>
-        </div>
-        <div className='container add-student box'>
-          <StudentForm/>
-        </div>
-        </div>
-        <div className='container statistics box'>
-          <Histogram studentsData={ studentsData }/>
-          <AgeDistribution studentsData={ studentsData }/>
-        </div>
+          <div className='grade-student'>
+            <div className='grade-sheet'>
+              <div className='titles'>
+                <div className='titles-headlines'>
+                  <h1 className="course-page-title">{course.CourseName}</h1>
+                </div>
+                <h2>{course.Year}{course.Semester}</h2>
+                <h3>Course Details: {course.CourseDetails}</h3>
+              </div>
+              <div className="container grade-sheet-table box">
+                <GradeSheetTable/>
+              </div>
+            </div>
+            <div className='container add-student box'>
+              <StudentForm/>
+            </div>
+          </div>
+          <div className='container statistics box'>
+            <Histogram studentsData={ studentsData }/>
+          </div>
       </div>
       )
 }
