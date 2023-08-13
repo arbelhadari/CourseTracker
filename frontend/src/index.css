@@ -248,6 +248,9 @@ form.login button[type="submit"] {
 
 /* Student Form */
 .student_form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
   background-color: white;
   /* height: clamp(500px, 50vh, 1000px); */
   padding: 21px;
