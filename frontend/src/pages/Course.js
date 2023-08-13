@@ -17,11 +17,10 @@ import {
 
 const Course = () => {
     const { courseId } = useParams();
-    const { user } = useAuthContext()
+    const { user } = useAuthContext();
 
     const [ course, setCourse ] = useState(null);
     const [ studentsData, setStudentsData ] = useState([]);
-
 
 
     useEffect(() => {
@@ -129,6 +128,6 @@ const Course = () => {
             </div>
         </div>
       )
-}
+};
 
 export default Course;

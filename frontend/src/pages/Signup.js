@@ -1,9 +1,9 @@
-import { useState } from "react"
+import { useState } from "react";
 import { useSignup } from "../hooks/useSignup";
 
 const Signup = () => {
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const {signup, error, isLoading} = useSignup();
 
   const handleSubmit = async (e) => {
@@ -33,6 +33,6 @@ const Signup = () => {
       {error && <div className="error">{error}</div>}
     </form>
   )
-}
+};
 
-export default Signup
+export default Signup;

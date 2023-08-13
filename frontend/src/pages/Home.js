@@ -7,8 +7,8 @@ import CourseDetails from "../components/CourseDetails";
 import CourseForm from "../components/CourseForm";
 
 const Home = () => {
-    const {courses, dispatch} = useCoursesContext()
-    const {user} = useAuthContext()
+    const {courses, dispatch} = useCoursesContext();
+    const {user} = useAuthContext();
     useEffect(() => {
         const fetchCourses = async () => {
             const response = await fetch("/api/courses", {

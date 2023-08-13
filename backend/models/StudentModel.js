@@ -13,10 +13,9 @@ const StudentSchema = new mongoose.Schema({
         validate: [
             {
               validator: function(v) {
-                // calculate age from date of birth
                 const ageInMilliseconds = Date.now() - v.getTime();
                 const ageInYears = ageInMilliseconds / (1000 * 60 * 60 * 24 * 365.25);
-                const minAge = 0; // minimum age required
+                const minAge = 0;
                 return ageInYears >= minAge;
               },
               message: 'Invalid date of birth.'

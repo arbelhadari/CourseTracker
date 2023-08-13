@@ -13,13 +13,13 @@ const StudentForm = () => {
     const [StudentDOB, setStudentDOB] = useState("");
     const [Gender, setGender] = useState("");
     const [Grade, setGrade] = useState("");
-    const [Error, setError] = useState(null)
+    const [Error, setError] = useState(null);
     const [studentExists, setStudentExists] = useState(false);
 
 
     const handleInputChange = (e) => {
       const inputValue = e.target.value;
-      const formattedValue = inputValue.slice(0, 9); // Limit to 9 digits
+      const formattedValue = inputValue.slice(0, 9);
     
       setStudentId(formattedValue);
       setError(null);
@@ -27,7 +27,7 @@ const StudentForm = () => {
       if (formattedValue.length === 9) {
         fetch(`/api/students/${formattedValue}/studentid`, {
                 method: "GET",
-                headers: { "Content-Type": "application/json", 'Authorization': `Bearer ${user.token}` }
+                headers: {"Content-Type": "application/json", 'Authorization': `Bearer ${user.token}`}
             })
                 .then((response) => response.json())
                 .then((data) => {
@@ -38,7 +38,7 @@ const StudentForm = () => {
                 })
                 .catch((error) => {
                   console.error("Error checking student existence:", error);
-                  setStudentExists(false); // Set to false in case of any error
+                  setStudentExists(false);
                   setStudentDOB("");
                   setGender("");
                 });
@@ -57,7 +57,7 @@ const StudentForm = () => {
         const response = await fetch(`/api/courses/${courseId}`, {
             method: "POST",
             body: JSON.stringify(student),
-            headers: { "Content-Type": "application/json", 'Authorization': `Bearer ${user.token}` }
+            headers: {"Content-Type": "application/json", 'Authorization': `Bearer ${user.token}`}
         });
         const json = await response.json();
         if (!response.ok) 
@@ -69,7 +69,7 @@ const StudentForm = () => {
             setGrade("");
             setError(null);
             dispatch({type: "CREATE_STUDENT", payload: json});
-            window.location.reload()
+            window.location.reload();
         }
 
     };
@@ -96,7 +96,7 @@ const StudentForm = () => {
               required
               min="1920-01-01"
               max={new Date().toISOString().split("T")[0]}
-              disabled={studentExists} // Disable if student exists
+              disabled={studentExists}
 
             />
               <label>Gender:</label>
@@ -107,7 +107,7 @@ const StudentForm = () => {
                     value="M"
                     checked={Gender === "M"}
                     onChange={(e) => setGender(e.target.value)}
-                    disabled={studentExists} // Disable if student exists
+                    disabled={studentExists}
 
                   />
                   Male
@@ -118,7 +118,7 @@ const StudentForm = () => {
                     value="F"
                     checked={Gender === "F"}
                     onChange={(e) => setGender(e.target.value)}
-                    disabled={studentExists} // Disable if student exists
+                    disabled={studentExists}
 
                   />
                   Female

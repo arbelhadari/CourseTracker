@@ -7,19 +7,18 @@ const CourseDetails = ({course}) => {
     const { dispatch } = useCoursesContext()
     const {user} = useAuthContext()
     const handleClick = async () => {
-        if (!user){
+        if (!user)
             return
-        }
+        
         const response = await fetch('/api/courses/' + course._id, {
             method: 'DELETE',
-            headers: {
-                'Authorization' : `Bearer ${user.token}`
-            }
+            headers: {'Authorization': `Bearer ${user.token}`}
     })
-    const json = await response.json()
-    if (response.ok) {
-        dispatch({type: 'DELETE_COURSE', payload: json})
-    }
+    const json = await response.json();
+    
+    if (response.ok) 
+        dispatch({type: 'DELETE_COURSE', payload: json});
+    
 }
     return (
         <div className="course-details">

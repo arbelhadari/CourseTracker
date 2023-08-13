@@ -7,10 +7,8 @@ const UserRouter = require('./routes/user');
 const StudentRouter = require('./routes/students');
 const mongoose = require('mongoose');
 
-
 // to create an express app
 const app = express();
-
 
 // middleware - adds body to req so we can access req.body
 app.use(express.json());
@@ -21,23 +19,18 @@ app.use((req, res, next) => {
     next();
 });
 
-
 // routes
 app.use('/api/courses/', CoursesRouter);
 app.use('/api/students', StudentRouter);
 app.use('/api/user', UserRouter);
 
-
 // connect to DB
 mongoose.connect(process.env.MONGO_URI)
     .then(() => {
-        // listen for requests
         app.listen(process.env.PORT, () => {
             console.log("Connected to DB\nListening on port", process.env.PORT);
         });
     })
     .catch((err) => {
         console.log(err);
-    })
-
-
+    });
