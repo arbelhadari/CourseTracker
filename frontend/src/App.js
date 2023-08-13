@@ -16,16 +16,13 @@ import Signup from "./pages/Signup";
 import Navbar from "./components/Navbar";
 
 function App() {
-
-  // const {user} = useAuthContext() 
-
   const [user, setUser] = useState(null);
   const [finish, setFinish] = useState(false);
-  const authContext = useAuthContext(); // Use the custom hook or context
+  const authContext = useAuthContext();
 
   useEffect(() => {
     const fetchUser = async () => {
-      const userData = await authContext.user; // Use a method from the custom hook or context
+      const userData = await authContext.user;
       setUser(userData);
       setFinish(true);
     };
@@ -54,6 +51,6 @@ function App() {
       </BrowserRouter>
     </div>
   );
-}
+};
 
 export default App;

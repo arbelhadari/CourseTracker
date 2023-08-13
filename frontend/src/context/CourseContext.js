@@ -9,9 +9,9 @@ export const CoursesReducer = (state, action) => {
         case "CREATE_COURSE":
             return {courses: [action.payload, ...state.courses]};
         case "DELETE_COURSE":
-            return  {courses: state.courses.filter((w) => w._id !== action.payload._id)} 
+            return  {courses: state.courses.filter((w) => w._id !== action.payload._id)};
         default: 
-            return state
+            return state;
     }
 }
 
@@ -24,4 +24,4 @@ export const CourseContextProvider = ({children}) => {
             {children}
         </CourseContext.Provider>
     )
-}
+};

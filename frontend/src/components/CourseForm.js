@@ -4,42 +4,40 @@ import { useAuthContext } from "../hooks/useAuthContext";
 
 const CourseForm = () => {
 
-    const {dispatch} = useCoursesContext()
-    const {user} = useAuthContext()
+    const {dispatch} = useCoursesContext();
+    const {user} = useAuthContext();
     const [CourseName, setCourseName] = useState("");
     const [Year, setYear] = useState("");
     const [Semester, setSemester] = useState("");
     const [CourseDetails, setCourseDetails] = useState("");
-    const [Error, setError] = useState(null)
+    const [Error, setError] = useState(null);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         
         if(!user){
-          setError('you must be logged in')
-          return
+          setError('you must be logged in');
+          return;
         }
 
-        const ProfessorEmail = user.email.split('@')[0]
+        const ProfessorEmail = user.email.split('@')[0];
         const course = {CourseName, Year, Semester, CourseDetails, ProfessorEmail};
         const response = await fetch('/api/courses', {
             method: "POST",
             body: JSON.stringify(course),
-            headers: { "Content-Type": "application/json" ,
-            'Authorization' : `Bearer ${user.token}`
-          }
+            headers: { "Content-Type": "application/json" , 'Authorization': `Bearer ${user.token}`}
 
         });
         const json = await response.json();
         if (!response.ok) 
             setError(json.error);
         else {
-            setCourseName("")
+            setCourseName("");
             setYear("");
             setSemester("");
             setCourseDetails("");
             setError(null);
-            dispatch({type: "CREATE_COURSE", payload: json})
+            dispatch({type: "CREATE_COURSE", payload: json});
         }
     };
 

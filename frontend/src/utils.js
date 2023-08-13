@@ -13,9 +13,9 @@ export function categorizeStudentsByGrade(students) {
   const result = gradeBins.map((count, index) => {
     let binStart = index * 10;
     let binEnd = binStart + 9;
-    if (index === 9) {
+    if (index === 9) 
       binEnd = 100;
-    }
+    
     return { bin: `${binStart}-${binEnd}`, count };
   });
 
@@ -57,9 +57,8 @@ export function categorizeStudentsByGender(students) {
     for (const student of students) {
         if (student.Gender === "M") 
             maleCount++;
-        
-            else if (student.Gender === "F") 
-        femaleCount++;
+        else if (student.Gender === "F") 
+            femaleCount++;
     }
 
     return [{"name": "M", "value": maleCount}, {"name": "F", "value": femaleCount}];
@@ -69,12 +68,11 @@ export function categorizeStudentsByGender(students) {
 export function getAverageGrade(students) {
     if (students.length === 0)
         return "-";
+    
     let gradeSum = 0;
-
-    for (const student of students) {
+    for (const student of students) 
         gradeSum += student.grade;
-    }
-
+    
     return (gradeSum / students.length).toFixed(2);
 }
 
@@ -83,10 +81,10 @@ export function getMinGrade(students) {
         return "-";
 
     let minGrade = 100;
-    for (const student of students) {
+    for (const student of students) 
         if (student.grade < minGrade) 
             minGrade = student.grade || 0;
-    }
+    
     return minGrade;
 }
 
@@ -95,9 +93,9 @@ export function getMaxGrade(students) {
         return "-";
 
     let maxGrade = 0;
-    for (const student of students) {
+    for (const student of students) 
         if (student.grade > maxGrade) 
             maxGrade = student.grade;
-    }
+    
     return maxGrade;
 }

@@ -54,7 +54,6 @@ const getCourse = async (req, res) => {
 
 // create new course
 const createCourse = async (req, res) => {
-    // TODO: check if GradeSheet is needed here
     const {CourseName, Semester, Year, GradeSheet, CourseDetails} = req.body;
     try {
         const ProfessorID = req.user._id
@@ -71,7 +70,6 @@ const createCourse = async (req, res) => {
 
 // delete course
 const deleteCourse = async (req, res) => {
-    // TODO: decrement CourseCount for each student in this course
     const { id } = req.params;
     
     if (!mongoose.Types.ObjectId.isValid(id)) {

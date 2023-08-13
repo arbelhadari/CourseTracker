@@ -7,7 +7,7 @@ const Navbar = () => {
     const {user} = useAuthContext();
 
     const handleClick = () => {
-        logout()
+        logout();
         window.location.reload();
     }
 
@@ -34,6 +34,6 @@ const Navbar = () => {
             </div>
         </header>
     )
-}
+};
 
 export default Navbar;

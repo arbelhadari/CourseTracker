@@ -1,10 +1,8 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
-// const validator = require('validator');      // not working
 const Schema = mongoose.Schema;
 
 
-// TODO: consider adding course list
 const UserSchema = new Schema({
     email: {
         type: String,
@@ -48,20 +46,20 @@ if (!validateEmail(email)) {
 UserSchema.statics.login = async function(email, password) {
 
     if (!email || !password) {
-      throw Error('All fields must be filled')
+      throw Error('All fields must be filled');
     }
   
-    const user = await this.findOne({ email })
+    const user = await this.findOne({ email });
     if (!user) {
-      throw Error('Incorrect email')
+      throw Error('Incorrect email');
     }
   
-    const match = await bcrypt.compare(password, user.password)
+    const match = await bcrypt.compare(password, user.password);
     if (!match) {
-      throw Error('Incorrect password')
+      throw Error('Incorrect password');
     }
   
-    return user
+    return user;
   }
 
 module.exports = mongoose.model('User', UserSchema);

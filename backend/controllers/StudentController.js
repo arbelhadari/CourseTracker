@@ -41,7 +41,6 @@ async function createStudent(StudentData){
 async function deleteStudent(StudentData){
     try{
         const deleted = await Students.findOneAndDelete({StudentId: StudentData.StudentId});
-        console.log(8);
         return deleted;
     } catch (err) {
         console.log(err);
@@ -63,11 +62,8 @@ async function decrementCourseCount(studentId)
 {
     try {
         const student = await Students.findOneAndUpdate({StudentId: studentId},{$inc: {CourseCount: -1}}, {new:true} );
-        console.log(6);
         if (student.CourseCount == 0){
-            console.log(7);
             const res = await deleteStudent(student);
-            console.log(9);
             if (res === -1)
                 return -1;
         }
@@ -105,9 +101,7 @@ const addStudent = async (req, res) => {
                 incrementCourseCount(req.body.StudentId);
             }
         }
-        console.log(course.GradeSheet);
         course.GradeSheet.set(req.body.StudentId, req.body.Grade);
-        console.log(course.GradeSheet);
         try {
             await course.save();
             res.status(200).json(student);
@@ -126,7 +120,6 @@ const removeStudent = async (req, res) => {
         if (!mongoose.Types.ObjectId.isValid(id)) {
             return res.status(404).json({error: "bad id"});
         }
-        console.log(req.body.StudentId)
         let course = await Courses.findById({_id: id});
         if (!course) {
             return res.status(500).send({mssg: "Courses not found"});
