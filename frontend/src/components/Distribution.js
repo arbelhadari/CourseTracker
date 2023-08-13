@@ -71,9 +71,9 @@ export default class Distribution extends PureComponent {
             activeShape={renderActiveShape}
             data={studentsData}
             cx="50%"
-            cy="40%"
-            innerRadius={70}
-            outerRadius={90}
+            cy="50%"
+            innerRadius={80}
+            outerRadius={100}
             fill="#1aac83"
             dataKey="value"
             onMouseEnter={this.onPieEnter}
