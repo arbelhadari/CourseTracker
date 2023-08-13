@@ -46,7 +46,6 @@ export function categorizeStudentsByAge(students) {
         }
     }
 
-    console.log(Array.from(ageBins, ([name, value]) => ({ name, value })));
     return Array.from(ageBins, ([name, value]) => ({ name, value }));
 }
 
