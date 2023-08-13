@@ -76,7 +76,7 @@ const StudentForm = () => {
 
     return (
           <form className="student_form" onSubmit={handleSubmit}>
-            <h2>Add a Student</h2>
+            <h2>Add Student</h2>
             <label htmlFor="studentId">Student ID:</label>
             <input
               type="text"

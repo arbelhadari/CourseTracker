@@ -209,121 +209,51 @@ form.login button[type="submit"] {
   cursor: pointer;
 }
 
-/* Course Page */
 
-.titles h2 {
-  margin-bottom: 10px;
-  font-size: 1.2em;
+/* .spanForm {
+  margin-left: 12px;
+} */
+
+/* ------------------------Course Page------------------------- */
+
+.course-page-container {
+  display: block;
+}
+
+/* Header */
+.name {
   color: var(--primary);
+  font-size: xxx-large;
+  font-weight: 700;
 }
 
-.grade-sheet-table {
-  height: 100%;
-  width: 100%;
-  padding-right: 10px;
-  overflow-y: auto;
-}
-
-.add-student {
-  width: 15vw;
-  padding-top: 5%;
-}
-
-.statistics {
-  height: 45vh;
-  margin: 20px;
-}
-
-.grade-student{
-  display: flex;
-  justify-content: space-between;
-  flex-direction: row;
-  height: 75vh;
-}
-
-.grade-sheet{
-  display: flex;
-  flex-direction: column;
-  width: 65%;
-  margin-right: 15px;
-}
-
-.titles-headlines{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+.date {
   color: var(--primary);
+  font-size: x-large;
+  font-weight: 600;
 }
 
-/* Grade Sheet */
-.grade-table {
-  background-color: white;
-  width: 100%;
-  max-height: 300px;
-  border-collapse: collapse;
-  overflow-y: auto;
-  border-radius: 8px;
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+.details {
+  font-weight: 500;
+  margin-bottom: 5vh;
+  width: 90%;
+  margin-left: 5vh;
 }
 
-.grade-table th {
-  padding: 8px;
-  text-align: left;
-  border-bottom: 1px solid #ccc;
-}
-
-.grade-table tr {
-  height: 33px;
-  transition: height 0.3s ease; /* Add transition for smooth animation */
-}
-
-.grade-table tr.edit-mode {
-  height: 45px; /* Adjust the desired height for the edit mode */
-}
-
-.grade-table td {
-  padding: 8px;
-  text-align: left;
-  font-family: "Roboto";
-  border-bottom: 1px solid #ccc;
-}
-
-.grade-table tr:last-child td {
-  border-bottom: none;
-}
-
-.grade-table tbody td:last-child {
-  width: 5px;
-}
-
-.material-symbols-outlined {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 5px;
-  height: 5px;
-  border-radius: 50%;
-  background-color: #fbfbfb;
-  color: #333;
-  cursor: pointer;
-  font-size: 20px;
-}
-
-.update-button {
-  background-color: var(--primary);
-  color: white;
-  border-radius: 1px;
-  border: none;
-  cursor: pointer;
+/* Table & Form */
+.grade-sheet-and-form-container {
+  display: flex;
+  justify-content: space-around;
 }
 
 /* Student Form */
 .student_form {
   background-color: white;
-  height: clamp(500px, 50vh,1000px);
-  padding: 15px;
+  /* height: clamp(500px, 50vh, 1000px); */
+  padding: 21px;
   border-radius: 8px;
   box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.1);
+  max-width: min-content;
 }
 
 .student_form h2 {
@@ -386,16 +316,12 @@ form.login button[type="submit"] {
   margin-right: 5px;
 }
 
-.spanForm {
-  margin-left: 12px;
-}
-
 .error-box {
   background-color: #f8d7da;
   border: 1px solid #f5c6cb;
   border-radius: 4px;
-  padding: 10px;
-  margin-top: 10px;
+  padding: 8px;
+  margin-top: 15px;
 }
 
 #errorMessage {
@@ -404,70 +330,127 @@ form.login button[type="submit"] {
   margin: 0;
 }
 
-.hist-container {
+/* Grade Sheet */
+.grade-sheet-table {
+  overflow-y: auto;
+  width: 70%;
+  max-height: 80vh;
+}
+
+.grade-table {
+  background-color: white;
+  width: 100%;
+  max-height: 300px;
+  border-collapse: collapse;
+  overflow-y: auto;
+  border-radius: 8px;
+  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.1);
+}
+
+.grade-table th {
+  padding: 8px;
+  text-align: left;
+  border-bottom: 1px solid #ccc;
+}
+
+.grade-table tr {
+  height: 33px;
+  transition: height 0.3s ease;
+}
+
+.grade-table td {
+  padding: 8px;
+  text-align: left;
+  font-family: "Roboto";
+  border-bottom: 1px solid #ccc;
+}
+
+.material-symbols-outlined {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background-color: #fbfbfb;
+  color: #333;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+.update-button {
+  background-color: var(--primary);
+  color: white;
+  border-radius: 1px;
+  border: none;
+  cursor: pointer;
+}
+
+/* Histogram */
+.grade-hist-container {
+  margin-top: 15vh;
+  min-height: 40vh;
+}
+
+.grade-hist-title {
+  font-size: xx-large;
+  font-weight: 700;
+  margin-bottom: 4vh;
+}
+
+.grade-hist-inner-container {
+  height: 35vh;
+  width: 100%;
+}
+
+/* Pie Charts */
+.students-stats-container {
+  margin-top: 12vh;
+  display: flex;
+}
+
+.pie-chart-container {
   display: flex;
   flex-direction: column;
   width: 100%;
-  height: 60vh;
-  justify-content: center;
   align-items: center;
+  min-height: 50vh;
 }
 
-.dist-container {
+.pie-chart-title {
+  font-size: xx-large;
+  font-weight: 700;
+  margin-bottom: -30px;
+}
+
+/*Grades Stats*/
+.grades-stats-container {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  justify-items: center;
-  align-items: center;
-  height: 100%;
+  justify-content: space-around;
 }
 
-.inner-dist {
-  height: 70vh;
-  width: 50%;
-  justify-items: center;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-}
-
-.title {
-  font-weight: bold;
-  font-size: 30px;
-  margin: 0;
-  margin-top: 12vh;
-}
-
-.number-stats-container {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  justify-items: center;
-  align-items: center;
-  grid-gap: 15px;
-} 
-
-.num-stat {
+.grades-stat {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
   background-color: white;
-  border-radius: 12px;
-  padding: 20px;
+  border-radius: 8px;
+  padding: 5vh;
+  width: 25%;
   box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.1);
-  width: 80%;
-  margin-bottom: 30px;
-} 
+  margin-bottom: 5vh;
+  margin-top: 3vh;
+}
 
-.num {
-  font-weight: bold;
-  font-size: 50px;
+.stat {
   color: var(--primary);
+  font-size: xxx-large;
+  font-weight: 800;
   margin: 0;
 }
 
-.num-title {
-  font-weight: bold;
-  font-size: 30px; /* Adjust the font size as needed */
-  margin: 3;
+.stat-title {
+  font-size: x-large;
+  font-weight: 700;
+  margin: 0;
 }

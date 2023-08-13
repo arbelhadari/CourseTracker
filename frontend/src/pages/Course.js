@@ -67,57 +67,67 @@ const Course = () => {
     }
 
     return (
-        <div className='container'>
-            <div className='titles-headlines'>
-                  <h1 className="course-page-title" style={{height: "1vh", fontSize:"xxx-large"}}>
-                    {course.CourseName}
-                  </h1>
-                  <h3>{course.Year} {course.Semester.toUpperCase()}</h3>
-              </div>
-          <div className='grade-student'>
-            <div className='grade-sheet'>
-              <div className='titles'>
+      <div className="course-page-container">
 
-                <h3>Course Details: {course.CourseDetails}</h3>
-              </div>
-              <div className="container grade-sheet-table box">
-                <GradeSheetTable/>
-              </div>
+            <div className="course-page-header">
+                <center className="course-header name">{course.CourseName}</center>
+                <center className="course-header date">{course.Year} {course.Semester.toUpperCase()}</center>
+                <h3 className="course-header details"><strong>Course Details: </strong>{course.CourseDetails}</h3>
             </div>
-            <div className='container add-student box'>
-              <StudentForm/>
+
+            <div className="grade-sheet-and-form-container">
+                <div className="grade-sheet-table">
+                    <GradeSheetTable/>
+                </div>
+                
+                <StudentForm/>
             </div>
-          </div>
-          <div className='hist-container'>
-          <p className='title'>Grades Distribution</p>
-            <Histogram studentsData={ categorizeStudentsByGrade(studentsData) }/>
-          </div>
-          <div className='dist-container'>
-            <div className='inner-dist'>
-              <p className='title'>Age</p>
-              <Distribution studentsData={ categorizeStudentsByAge(studentsData) }/>
+
+            <div className="grade-hist-container">
+                <center className="grade-hist-title">Grades Frequency Distribution</center>
+
+                <div className="grade-hist-inner-container">
+                    <Histogram studentsData={categorizeStudentsByGrade(studentsData)}/>
+                </div>
+                
             </div>
-            <div className='inner-dist'>
-              <p className='title'>Gender</p>
-              <Distribution studentsData={ categorizeStudentsByGender(studentsData) }/>
+
+            <div className="students-stats-container">
+                <div className="pie-chart-container">
+                    <p className="pie-chart-title">Ages</p>
+
+                    <div className="pie-chart-container">
+                        <Distribution studentsData={categorizeStudentsByAge(studentsData)}/>
+                    </div>
+                    
+                </div>
+
+                <div className="pie-chart-container">
+                    <p className="pie-chart-title">Genders</p>
+
+                    <div className="pie-chart-container">
+                        <Distribution studentsData={categorizeStudentsByGender(studentsData)}/>
+                    </div>
+                </div>
             </div>
-          </div>
-          
-          <div className="number-stats-container">
-          <div className='num-stat'>
-              <p className='num'>{getMinGrade(studentsData)}</p>
-              <p className='num-title'>Lowest Grade</p>
+
+            <div className="grades-stats-container">
+                <div className="grades-stat">
+                    <p className="stat">{getMinGrade(studentsData)}</p>
+                    <p className="stat-title">Lowest Grade</p>
+                </div>
+
+                <div className="grades-stat">
+                    <p className="stat">{getAverageGrade(studentsData)}</p>
+                    <p className="stat-title">Average Grade</p>
+                </div>
+
+                <div className="grades-stat">
+                    <p className="stat">{getMaxGrade(studentsData)}</p>
+                    <p className="stat-title">Highest Grade</p>
+                </div>
             </div>
-            <div className='num-stat'>
-              <p className='num'>{getAverageGrade(studentsData)}</p>
-              <p className='num-title'>Average Grade</p>
-            </div>
-            <div className='num-stat'>
-              <p className='num'>{getMaxGrade(studentsData)}</p>
-              <p className='num-title'>Highest Grade</p>
-            </div>
-          </div>
-      </div>
+        </div>
       )
 }
 
